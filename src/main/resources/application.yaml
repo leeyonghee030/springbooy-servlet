@@ -1,3 +1,19 @@
 spring:
   application:
     name: spingboot-servlet
+  mandatory-file-encoding: UTF-8
+  web:
+    resources:
+      charset: UTF-8
+  datasource:
+    url: jdbc:mysql://localhost:3306/yonghee-database-schema?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  #  MyBatis가 해당 경로에서 XML을 읽어서 Mapper 인터페이스와 연결
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

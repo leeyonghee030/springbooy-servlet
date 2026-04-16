@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.spingbootservlet.mapper.UserMapper">
+<!--<select> 조회 SQL 태그 (INSERT면 <insert>, UPDATE면 <update>) -->
+
+<!--    ┌──────────┬───────────┬───────────────────┐-->
+<!--    │   태그   │   역할    │       예시        │-->
+<!--    ├──────────┼───────────┼───────────────────┤-->
+<!--    │ <select> │ 조회 쿼리 │ findAll, findById │-->
+<!--    ├──────────┼───────────┼───────────────────┤-->
+<!--    │ <insert> │ 삽입 쿼리 │ save              │-->
+<!--    ├──────────┼───────────┼───────────────────┤-->
+<!--    │ <update> │ 수정 쿼리 │ update            │-->
+<!--    ├──────────┼───────────┼───────────────────┤-->
+<!--    │ <delete> │ 삭제 쿼리 │ deleteById        │-->
+<!--    └──────────┴───────────┴───────────────────┘-->
+    <select id="findAll"
+            resultType="com.study.spingbootservlet.entity.User">
+        <!--    id="findAll"  UserMapper 인터페이스의 메소드명과 일치해야 해요 -->
+<!-- resultType SQL 결과를 어떤 Java 클래스에 담을지  -->
+        SELECT id,userName,email
+        FROM users
+    </select>
+
+    <select id="findById"
+            resultType="com.study.spingbootservlet.entity.User">
+         SELECT id,userName,email
+        FROM users
+        WHERE id = #{id}
+<!-- Optional<User> findById(long id);
+  파라미터 이름이 id니까 XML에서 #{id} 로 받는거  -->
+    </select>
+
+<!--useGeneratedKeys="true"  DB가 AUTO_INCREMENT로 생성한 id값을 받아올게요-->
+<!-- keyProperty="id"  생성된 id값을 User 객체의 id 필드에 넣어줘요   -->
+<!-- #{userName}, #{email}    User 객체의 필드값이 여기 들어와요  -->
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO users(userName, email)
+    VALUES (#{userName}, #{email})
+</insert>
+<!--  INSERT INTO users       users 테이블에 데이터 넣을게요-->
+<!--  (user_name, email)    어떤 컬럼에 넣을지   -->
+<!-- VALUES   실제 넣을 값들  (#{userName}, #{email} 컬럼 순서에 맞춰서 값 넣기 -->
+
+
+    <delete id="deleteById">
+        DELETE FROM users
+        WHERE id = #{id}
+<!--    이 id를 가진 row만 삭제        -->
+    </delete>
+
+
+
+
+</mapper>
