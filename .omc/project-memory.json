@@ -75,9 +75,15 @@
   "hotPaths": [
     {
       "path": "",
-      "accessCount": 1,
-      "lastAccessed": 1776339939345,
+      "accessCount": 2,
+      "lastAccessed": 1776340541353,
       "type": "directory"
+    },
+    {
+      "path": "src/main/resources/application.yml",
+      "accessCount": 2,
+      "lastAccessed": 1776340548201,
+      "type": "file"
     },
     {
       "path": "src/main/java/com/study/spingbootservlet/controller/TodoController.java",
